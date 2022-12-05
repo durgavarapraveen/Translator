@@ -1,0 +1,116 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+.main-container {
+    width: 100%;
+    padding: 0px auto;
+}
+.sub-main-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(-135deg ,rgb(104, 243, 4) ,rgb(199, 250, 12));
+   
+}
+.translator {
+    width: 80vw;
+    height: 100%;
+    background: #fff;
+    padding: 10px 10px 10px 0px;
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+    border-radius: 10px;
+}
+.flex1 {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+.flex2 {
+    display: flex;
+    flex-direction: column;
+}
+.text {
+    font-size: 43px;
+    padding: 20px 5px 20px 40px;
+    color: rgb(14, 111, 237);
+}
+.text1 {
+    font-size: 43px;
+    padding: 20px 40px 20px 5px;
+    color: rgb(14, 111, 237);
+}
+.box {
+    display: flex;
+    padding: 10px 25px 0px 25px;
+    border: 2px;
+}
+.box textarea {
+    font-size: 20px;
+    width: 30vw;
+    height: 350px;
+    padding-left: 10px;
+    text-decoration: none;
+}
+.home .texttransilate {
+    border-left: 1px solid #bbb;
+}
+
+.bottom.btn {
+    padding: 10px 15px;
+    width: 60vw;
+}
+.btn {
+    padding: 10px 10px;
+    width: 60vw;
+    border-radius: 10px;
+    text-transform: uppercase;
+    background: rgb(247, 134, 230);
+}
+button {
+    margin: 15px 25px;
+}
+.text-trans {
+    font-size: 30px;
+    font-family: 'poppins';
+
+}
+.flex-sym {
+    display: flex;
+    flex-direction: row;
+}
+.flex-sym-box {
+    padding: 10px 25px;
+}
+.flex-sym-box1 {
+    padding: 10px 24.5vw;
+}
+.speaker {
+    font-size: 200px;
+}
+.uu{
+    display:flex;
+    list-style:none;
+    padding:12px 15px;
+    align-items:center;
+    justify-content: space-between;
+}
+.home textarea{
+  height:350px;
+  width:100%;
+  border: none;
+  resize: none;
+  background: none;
+  font-size: 18px;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+.home .translattext{
+    border-radius:0px;
+    border-left: 1px solid #bbb;
+}
