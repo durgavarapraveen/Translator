@@ -98,8 +98,66 @@ let countires = {
     "zu-ZA": "Zulu"
 }
 const giventext = document.querySelector(".giventext"),
-translatetext = document.querySelector(".transalatetext"),
-exchangeIcon = document.querySelector(".exchange"),
+translattext= document.querySelector(".translattext"),
+exchageIcon = document.querySelector(".exchange"),
 selectTag = document.querySelectorAll("select"),
-icons = document.querySelectorAll(".row i");
-translateBtn = document.querySelectorAll("button"),
+icons = document.querySelectorAll(".first i");
+translateBtn = document.querySelector("button"),
+selectTag.forEach((tag, id) => {
+    for (let country_code in countries) {
+        let selected = id == 0 ? country_code == "en-GB" ? "selected" : "" : country_code == "hi-IN" ? "selected" : "";
+        let option = `<option ${selected} value="${country_code}">${countries[country_code]}</option>`;
+        tag.insertAdjacentHTML("beforeend", option);
+    }
+});
+exchageIcon.addEventListener("click", () => {
+    let tempText = giventext.value,
+    tempLang = selectTag[0].value;
+    givenText.value = translattext.value;
+    translattext.value = tempText;
+    selectTag[0].value = selectTag[1].value;
+    selectTag[1].value = tempLang;
+});
+giventext.addEventListener("keyup", () => {
+if(!giventext.value) {
+    translattext.value = "";
+    }
+});
+translateBtn.addEventListener("click", () => {
+    let text = giventext.value.trim(),
+    translateFrom = selectTag[0].value,
+    translateTo = selectTag[1].value;
+    if(!text) return;
+    translattext.setAttribute("placeholder", "Translating...");
+    let apiUrl = `https://api.mymemory.translated.net/get?q=${text}&langpair=${translateFrom}|${translateTo}`;
+    fetch(apiUrl).then(res => res.json()).then(data => {
+    translattext.value = data.responseData.translatedText;
+    data.matches.forEach(data => {
+        if(data.id === 0) {
+            translattext.value = data.translation;
+            }
+        });
+    });
+});
+icons.forEach(icon => {
+    icon.addEventListener("click", ({target}) => {
+        if(!giventext.value || !translattext.value) return;
+         if(target.classList.contains("fa-copy")) {
+            if(target.id == "from") {
+                navigator.clipboard.writeText(giventext.value);
+            } else {
+                navigator.clipboard.writeText(translattext.value);
+            }
+        } else {
+            let utterance;
+            if(target.id == "from") {
+                utterance = new SpeechSynthesisUtterance(giventext.value);
+                utterance.lang = selectTag[0].value;
+            } else {
+                utterance = new SpeechSynthesisUtterance(translattext.value);
+                utterance.lang = selectTag[1].value;
+            }
+            speechSynthesis.speak(utterance);
+        }
+    });
+});
